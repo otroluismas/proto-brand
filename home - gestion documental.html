@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión Documental</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #FAFAFA;
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 32px;
+            background-color: #F4F4F5;
+            border-bottom: 1px solid #E4E4E7;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .header__logo img {
+            object-fit: contain;
+            width: 264px; /* Updated width */
+            height: 80px; /* Updated height */
+        }
+
+        .header__user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .header__user-greeting {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header__user-greeting span {
+            font-size: 14px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            color: rgba(0, 0, 0, 0.9);
+            line-height: 1.2;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding: 20px 48px;
+        }
+
+        .title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #171717;
+            letter-spacing: -0.64px;
+        }
+
+        .create-button {
+            background-color: #1A19A8;
+            color: #FFFFFF;
+            width: 138px; /* Updated width */
+            height: 40px; /* Updated height */
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .filters {
+            display: flex;
+            justify-content: flex-start;
+            gap: 2px;
+            padding-top: 20px;
+        }
+
+        .filter-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: fit-content;
+            padding: 6px 0;
+            cursor: pointer;
+        }
+
+        .filter-item.active {
+            color: #1A19A8;
+        }
+
+        .filter-item span {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .filter-item .count {
+            background-color: #F4F4F5;
+            padding: 2px 8px;
+            border-radius: 16px;
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.5);
+        }
+
+        .filter-item.active .count {
+            background-color: #EDFCF2;
+            color: #1A19A8;
+        }
+
+        .filter-item .underline {
+            height: 2px;
+            width: 100%;
+            background-color: transparent;
+            margin-top: 4px;
+        }
+
+        .filter-item.active .underline {
+            background-color: #1A19A8;
+        }
+
+        .search-filters {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 16px;
+        }
+
+        .date-type-status {
+            display: flex;
+            gap: 12px;
+        }
+
+        .filter-box {
+            display: flex;
+            align-items: center;
+            padding: 4px 16px;
+            border: 1.5px solid #E4E4E7;
+            border-radius: 8px;
+            background-color: #FAFAFA;
+            height: 40px;
+        }
+
+        .filter-box span {
+            font-size: 14px;
+            font-weight: 500;
+            color: #1E1E1E;
+        }
+
+        .filter-box .value {
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.9);
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            border: 1px solid #E4E4E7;
+            border-radius: 8px;
+            background-color: #FFFFFF;
+            padding: 8px 12px;
+            width: 312px;
+        }
+
+        .search-box svg {
+            margin-right: 8px;
+        }
+
+        .search-box span {
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.5);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-top: 16px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        th {
+            background-color: #f8f8f8;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .status {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .status.verificar {
+            background-color: #f39c12;
+        }
+
+        .status.firmar {
+            background-color: #e74c3c;
+        }
+
+        .status.edicion {
+            background-color: #3498db;
+        }
+
+        .status.firmado {
+            background-color: #2ecc71;
+        }
+
+        .actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .actions button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #777;
+        }
+
+        .create-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 24px;
+        }
+
+        .create-section .title {
+            flex: 1;
+        }
+
+        .create-section .create-button-container {
+            width: 170px;
+        }
+
+        .create-section .create-button-container .create-button {
+            width: 138px; /* Updated width */
+            height: 40px; /* Updated height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #1A19A8;
+            border-radius: 8px;
+            color: #FFFFFF;
+            font-size: 14px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header__logo">
+            <img src="https://citymis.co/custom/sanisidro/_images/slide-logo.png" alt="Logo Mi Ciudad">
+        </div>
+        <div class="header__user-info">
+            <div class="header__user-greeting">
+                <span>¡Hola!</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 9L12 15L18 9" stroke="#52525B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="create-section">
+            <div class="title">
+                <p class="text-[#171717] text-[32px] font-['Montserrat'] font-bold leading-10 tracking-[-0.64px]">Gestión Documental</p>
+            </div>
+            <div class="create-button-container">
+                <div class="create-button">
+                    Crear
+                </div>
+            </div>
+        </div>
+        <div class="filters">
+            <div class="filter-item active">
+                <span>Todo</span>
+                <div class="count">100</div>
+                <div class="underline"></div>
+            </div>
+            <div class="filter-item">
+                <span>Mis tareas</span>
+                <div class="count">05</div>
+                <div class="underline"></div>
+            </div>
+            <div class="filter-item">
+                <span>Documentos</span>
+                <div class="count">90</div>
+                <div class="underline"></div>
+            </div>
+            <div class="filter-item">
+                <span>Expedientes</span>
+                <div class="count">09</div>
+                <div class="underline"></div>
+            </div>
+            <div class="filter-item">
+                <span>Archivo</span>
+                <div class="count">01</div>
+                <div class="underline"></div>
+            </div>
+        </div>
+        <div class="search-filters">
+            <div class="date-type-status">
+                <div class="filter-box">
+                    <span>Fecha:</span>
+                    <span class="value">sin seleccionar</span>
+                </div>
+                <div class="filter-box">
+                    <span>Tipo:</span>
+                    <span class="value">0 seleccionados</span>
+                </div>
+                <div class="filter-box">
+                    <span>Estado:</span>
+                    <span class="value">0 seleccionados</span>
+                </div>
+            </div>
+            <div class="search-box">
+                <svg width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zm-5.442 1.1a5.5 5.5 0 1 1 7.778-7.778 5.5 5.5 0 0 1-7.778 7.778z"/>
+                </svg>
+                <span>Buscar...</span>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Última modificación</th>
+                    <th>Tipo</th>
+                    <th>Número</th>
+                    <th>Referencia</th>
+                    <th>Estado</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>14/02/25 - 15:34</td>
+                    <td>EX</td>
+                    <td>EX-2025-76859-MCI-DGOA</td>
+                    <td>SOLAO | Potestad sobre el inmueble</td>
+                    <td><span class="status verificar">A verificar</span></td>
+                    <td class="actions">
+                        <button>✏️</button>
+                        <button>️</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>02/02/25 - 11:45</td>
+                    <td>EX</td>
+                    <td>EX-2025-76860-MCI-DGOA</td>
+                    <td>SOLAO | Permiso</td>
+                    <td><span class="status firmar">Firmar ahora</span></td>
+                    <td class="actions">
+                        <button>✏️</button>
+                        <button>️</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>11/01/25 - 11:32</td>
+                    <td>IF</td>
+                    <td>&lt;A Asignar&gt;</td>
+                    <td>Informe Dictamen técnico</td>
+                    <td><span class="status firmar">Firmar ahora</span></td>
+                    <td class="actions">
+                        <button>✏️</button>
+                        <button>️</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>03/02/25 - 10:32</td>
+                    <td>EX</td>
+                    <td>EX-2024-00028035-MCI-MEEN</td>
+                    <td>Declaración de interés Municipal - Hackaton</td>
+                    <td><span class="status edicion">En edición</span></td>
+                    <td class="actions">
+                        <button>✏️</button>
+                        <button>️</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>04/01/25 - 14:55</td>
+                    <td>IF</td>
+                    <td>IF-2024-00001234-MCI-SHYF</td>
+                    <td>Informe Licitación 25/2024</td>
+                    <td><span class="status firmado">Firmado</span></td>
+                    <td class="actions">
+                        <button>✏️</button>
+                        <button>️</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
