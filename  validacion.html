@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validar solicitud</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FAFAFA;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 32px;
+            background-color: #F4F4F5;
+            border-bottom: 1px solid #E4E4E7;
+            box-sizing: border-box;
+        }
+
+        .logo {
+            width: 132px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-name {
+            color: rgba(0, 0, 0, 0.9);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .left-panel {
+            width: 400px;
+            padding: 32px;
+            border-right: 1px solid #E4E4E7;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            overflow-y: auto;
+        }
+
+        .solicitud-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #171717;
+        }
+
+        .solicitud-id {
+            font-size: 16px;
+            color: #171717;
+        }
+
+        .requisitos-verificados {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .requisito-item {
+            padding: 16px;
+            background-color: rgba(26, 25, 168, 0.1);
+            border: 1px solid #1A19A8;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .requisito-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #171717;
+        }
+
+        .requisito-info {
+            font-size: 14px;
+            color: #171717;
+        }
+
+        .rechazar-button {
+            padding: 8px 16px;
+            background-color: #FAFAFA;
+            border: 1px solid #71717A;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #171717;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rechazar-button svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .right-panel {
+            flex: 1;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .document-viewer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .document-viewer {
+            flex: 1;
+            background-color: #FFFFFF;
+            border: 1px solid #D4D4D8;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+        }
+
+        .bottom-actions {
+            display: flex;
+            justify-content: space-between;
+            padding: 16px 32px;
+            background-color: #F4F4F5;
+            border-top: 1px solid #E4E4E7;
+        }
+
+        .bottom-actions button {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .bottom-actions .volver {
+            background-color: transparent;
+            border: 1px solid #1A19A8;
+            color: #1A19A8;
+        }
+
+        .bottom-actions .cancelar {
+            background-color: #E4E4E7;
+            border: none;
+            color: #171717;
+        }
+
+        .bottom-actions .firmar {
+            background-color: #1A19A8;
+            border: none;
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <img src="https://placehold.co/132x48" alt="Logo" class="logo">
+        <div class="user-info">
+            <span class="user-name">Santiago Calucci</span>
+        </div>
+    </div>
+    <div class="main-container">
+        <div class="left-panel">
+            <p class="solicitud-title">Validar solicitud</p>
+            <p class="solicitud-id">EX-2025-76860-MCI-DGOA</p>
+            <div class="requisitos-verificados">
+                <div class="requisito-item">
+                    <p class="requisito-title">Potestad sobre el inmueble</p>
+                    <p class="requisito-info">Verificado por: Marta Ramirez</p>
+                    <p class="requisito-info">Fecha de verificación: 13/02/25 - 10:05</p>
+                    <p class="requisito-info">Presentación: <span class="requisito-link">IF-2024-4494357-MCI-MDCI</span></p>
+                    <p class="requisito-info">Verificación: <span class="requisito-link">IF-2024-4494357-MCI-DGOA</span></p>
+                    <button class="rechazar-button">
+                        <svg>
+                            <path d="M11.3337 5.16797L4.66699 11.8346M4.66699 5.16797L11.3337 11.8346" />
+                        </svg>
+                        <span>Rechazar</span>
+                    </button>
+                </div>
+                <div class="requisito-item">
+                    <p class="requisito-title">Tareas a realizar</p>
+                    <p class="requisito-info">Verificado por: Rosa Estevez</p>
+                    <p class="requisito-info">Fecha de verificación: 13/02/25 - 11:32</p>
+                    <p class="requisito-info">Presentación: <span class="requisito-link">IF-2024-4494357-MCI-MDCI</span></p>
+                    <p class="requisito-info">Verificación: <span class="requisito-link">IF-2024-4494357-MCI-DGOA</span></p>
+                    <button class="rechazar-button">
+                        <svg>
+                            <path d="M11.3337 5.16797L4.66699 11.8346M4.66699 5.16797L11.3337 11.8346" />
+                        </svg>
+                        <span>Rechazar</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="right-panel">
+            <div class="document-viewer-header">
+                <div class="document-actions">
+                    <svg>
+                        <path d="M28 28L22.2 22.2M14.6667 10.6667V18.6667M10.6667 14.6667H18.6667M25.3333 14.6667C25.3333 20.5577 20.5577 25.3333 14.6667 25.3333C8.77563 25.3333 4 20.5577 4 14.6667C4 8.77563 8.77563 4 14.6667 4C20.5577 4 25.3333 8.77563 25.3333 14.6667Z" />
+                    </svg>
+                </div>
+            </div>
+            <div class="document-viewer">
+                <p>AVISO DE OBRA</p>
+            </div>
+        </div>
+    </div>
+    <div class="bottom-actions">
+        <button class="volver">Volver</button>
+        <button class="cancelar">Cancelar</button>
+        <button class="firmar">Firmar</button>
+    </div>
+</body>
+</html>
