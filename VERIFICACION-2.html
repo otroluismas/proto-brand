@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación Documental</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FAFAFA;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1085px;
+            padding: 8px 32px;
+            background-color: #F4F4F5;
+            border-bottom: 1px solid #E4E4E7;
+            width: 1920px; /* Establecer un ancho fijo para la barra superior */
+            box-sizing: border-box; /* Asegurar que el padding no afecte el ancho total */
+        }
+
+        .logo {
+            width: 132px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-name {
+            color: rgba(0, 0, 0, 0.9);
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+        }
+
+        .dropdown-icon {
+            width: 24px;
+            height: 24px;
+            fill: none;
+            stroke: #52525B;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .main-container {
+            display: flex;
+            align-items: flex-start;
+            background-color: #FAFAFA;
+            height: 852px;
+        }
+
+        .sidebar {
+            max-width: 400px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 323px;
+            padding: 24px 32px;
+            border-right: 1px solid #E4E4E7;
+            box-sizing: border-box;
+        }
+
+        .sidebar-content {
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+        }
+
+        .section-title {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .main-title {
+            color: rgba(0, 0, 0, 0.9);
+            line-height: 30px;
+        }
+
+        .main-title span:first-child {
+            font-size: 32px;
+            font-weight: 600;
+            letter-spacing: -0.64px;
+        }
+
+        .main-title span:last-child {
+            font-size: 20px;
+            letter-spacing: -0.4px;
+        }
+
+        .section-description {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .section-description p {
+            color: rgba(0, 0, 0, 0.9);
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+            margin: 0;
+        }
+
+        .document-status-card {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 16px;
+            background-color: rgba(26, 25, 168, 0.1);
+            border: 1px solid #1A19A8;
+            border-radius: 12px;
+        }
+
+        .status-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .status-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .status-title {
+            color: rgba(0, 0, 0, 0.9);
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-badge {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 6px;
+            background-color: #1A19A8;
+            border-radius: 16px;
+            height: 20px;
+        }
+
+        .status-badge svg {
+            width: 12px;
+            height: 12px;
+            fill: white;
+        }
+
+        .status-badge span {
+            color: #F4F4F5;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 16px;
+            text-align: center;
+        }
+
+        .dropdown-arrow {
+            width: 24px;
+            height: 24px;
+            fill: none;
+            stroke: #52525B;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .address-card {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 16px;
+            background-color: #FFFFFF;
+            border: 1px solid #E4E4E7;
+            border-radius: 12px;
+        }
+
+        .address-item {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .address-header {
+            color: rgba(0, 0, 0, 0.9);
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 16px;
+        }
+
+        .address-value {
+            color: rgba(0, 0, 0, 0.9);
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 16px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .button {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            height: 40px;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 20px;
+            cursor: pointer;
+            border: 1.5px solid transparent;
+        }
+
+        .button-secondary {
+            background-color: #FAFAFA;
+            border-color: #71717A;
+            color: rgba(0, 0, 0, 0.9);
+        }
+
+        .button-primary {
+            background-color: #1A19A8;
+            color: #FFFFFF;
+        }
+
+        .continue-button-container {
+            display: flex;
+            justify-content: center;
+            padding: 16px 0;
+        }
+
+        .continue-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background-color: #E4E4E7;
+            border-radius: 8px;
+            height: 54px;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 28px;
+            color: #F4F5F5;
+            border: none;
+            cursor: pointer;
+        }
+
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 24px 20px 20px 20px;
+            box-sizing: border-box;
+        }
+
+        .content-header {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 0 0 16px 0;
+        }
+
+        .content-title {
+            color: rgba(0, 0, 0, 0.9);
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 28px;
+            letter-spacing: -0.4px;
+            margin-bottom: 4px;
+        }
+
+        .content-subtitle {
+            color: rgba(0, 0, 0, 0.5);
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+            margin: 0;
+        }
+
+        .document-viewer {
+            flex: 1;
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            overflow: hidden; /* Asegura que el contenido de la imagen no se desborde del contenedor */
+            display: flex;
+            justify-content: center; /* Centrar horizontalmente */
+            align-items: center; /* Centrar verticalmente */
+        }
+
+        .document-viewer img {
+            display: block; /* Elimina el espacio extra debajo de la imagen */
+            max-width: 100%; /* Asegura que la imagen no sea más ancha que su contenedor */
+            max-height: 100%; /* Asegura que la imagen no sea más alta que su contenedor */
+            object-fit: contain; /* Mantiene la proporción de la imagen dentro del contenedor */
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 48px;
+            height: 32px;
+            padding: 16px 0;
+        }
+
+        .pagination-controls {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .pagination-icon {
+            width: 32px;
+            height: 33px;
+            fill: none;
+            stroke: black;
+            stroke-width: 2.66667;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            cursor: pointer;
+        }
+
+        .page-number {
+            color: rgba(0, 0, 0, 0.5);
+            font-size: 21.65px;
+            font-weight: 700;
+            line-height: 32.48px;
+            text-align: center;
+        }
+
+        .total-pages {
+            color: rgba(0, 0, 0, 0.3);
+            font-size: 21.65px;
+            line-height: 32.48px;
+            text-align: center;
+        }
+
+        .download-icon {
+            width: 32px;
+            height: 33px;
+            fill: none;
+            stroke: black;
+            stroke-width: 2.66667;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <img src="https://placehold.co/132x48" alt="Logo" class="logo">
+        <div class="user-info">
+            <span class="user-name">Marta Lopez</span>
+            <svg class="dropdown-icon">
+                <path d="M6 9L12 15L18 9" />
+            </svg>
+        </div>
+    </div>
+    <div class="main-container">
+        <div class="sidebar">
+            <div class="sidebar-content">
+                <div class="section-title">
+                    <p class="main-title">
+                        <span>Verificación Documental<br /></span>
+                        <span>EX-2025-76859-MCI-DGOA</span>
+                    </p>
+                    <div class="section-description">
+                        <p>Verificá la información presentada por el solicitante. Si detectás inconsistencias, agregá observaciones para que pueda corregirlas.</p>
+                    </div>
+                </div>
+                <div class="section-cards">
+                    <div class="document-status-card">
+                        <div class="status-item">
+                            <div class="status-header">
+                                <div class="status-title">
+                                    <span>Documento</span>
+                                    <div class="status-badge">
+                                        <svg>
+                                            <g clip-path="url(#clip0_4988_1775)">
+                                                <path d="M3.75 6L5.25 7.5L8.25 4.5M11 6C11 8.76142 8.76142 11 6 11C3.23858 11 1 8.76142 1 6C1 3.23858 3.23858 1 6 1C8.76142 1 11 3.23858 11 6Z" />
+                                            </g>
+                                        </svg>
+                                        <span>Válido</span>
+                                    </div>
+                                </div>
+                                <svg class="dropdown-arrow">
+                                    <path d="M6 9L12 15L18 9" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="address-card">
+                        <div class="address-item">
+                            <span class="address-header">Dirección</span>
+                            <p class="address-value">Ramón Falcón 2021, UF4, Beccar</p>
+                        </div>
+                        <div class="button-group">
+                            <div class="button button-secondary">
+                                <div class="h-[20px]">
+                                    <span class="text-[rgba(0,0,0,0.9)] text-sm font-['Montserrat'] font-bold leading-5">Inválido</span>
+                                </div>
+                            </div>
+                            <div class="button button-primary">
+                                <div class="h-[20px]">
+                                    <span class="text-[#FFFFFF] text-sm font-['Montserrat'] font-bold leading-5">Válido</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="continue-button-container">
+                <button class="continue-button">
+                    <div class="h-[20px]">
+                        <span class="text-[#F4F5F5] text-lg font-['Montserrat'] font-bold leading-7">Continuar</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+        <div class="content-area">
+            <div class="content-header">
+                <p class="content-title">Autorización propietario</p>
+                <p class="content-subtitle">IF-2024-4494357-MCI-MDCI</p>
+            </div>
+            <div class="pagination">
+                <div class="pagination-controls">
+                    <svg class="pagination-icon">
+                        <path d="M24 20.3711L16 12.3711L8 20.3711" />
+                    </svg>
+                    <span class="page-number">1</span>
+                    <span class="total-pages">/</span>
+                    <span class="total-pages">2</span>
+                    <svg class="pagination-icon">
+                        <path d="M8 12.3711L16 20.3711L24
