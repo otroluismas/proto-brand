@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación Documental</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FAFAFA;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centrar el contenido principal horizontalmente */
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 32px;
+            background-color: #F4F4F5;
+            border-bottom: 1px solid #E4E4E7;
+            width: 100%; /* La barra superior ocupa todo el ancho */
+            box-sizing: border-box;
+        }
+
+        .logo {
+            width: 132px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-name {
+            color: rgba(0, 0, 0, 0.9);
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+        }
+
+        .dropdown-icon {
+            width: 24px;
+            height: 24px;
+            fill: none;
+            stroke: #52525B;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centrar el contenido del contenedor principal */
+            background-color: #FAFAFA;
+            padding: 40px; /* Añadir un poco de espacio alrededor del contenido principal */
+            box-sizing: border-box;
+            width: 100%; /* El contenedor principal ocupa todo el ancho */
+            max-width: 768px; /* Limitar el ancho máximo para pantallas más grandes */
+        }
+
+        .status-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            padding: 40px;
+            background-color: #FFFFFF;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Sutil sombra */
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .check-icon {
+            width: 96px;
+            height: 96px;
+            border: 2px solid #1A19A8;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #1A19A8;
+            font-size: 60px;
+            font-weight: bold;
+        }
+
+        .check-icon svg {
+            width: 60px;
+            height: 60px;
+            fill: none;
+            stroke: #1A19A8;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .title {
+            color: rgba(0, 0, 0, 0.9);
+            font-size: 32px;
+            font-weight: 600;
+            line-height: 40px;
+            letter-spacing: -0.64px;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: rgba(0, 0, 0, 0.9);
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 28px;
+            letter-spacing: -0.4px;
+            text-align: center;
+        }
+
+        .button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background-color: #1A19A8;
+            border-radius: 8px;
+            height: 54px;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 28px;
+            color: #F4F5F5;
+            border: none;
+            cursor: pointer;
+            width: 100%; /* El botón ocupa todo el ancho del contenedor */
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <img src="https://placehold.co/132x48" alt="Logo" class="logo">
+        <div class="user-info">
+            <span class="user-name">Marta Lopez</span>
+            <svg class="dropdown-icon">
+                <path d="M6 9L12 15L18 9" />
+            </svg>
+        </div>
+    </div>
+    <div class="main-container">
+        <div class="status-container">
+            <div class="check-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </div>
+            <p class="title">¡Listo!</p>
+            <p class="subtitle">La verificación del documento<br>EX-2025-76859-MCI-DGOA<br>se completó con éxito.<br>IF-2025-95838-MCI-DGOA</p>
+            <button class="button">Volver a mis tareas</button>
+        </div>
+    </div>
+</body>
+</html>
